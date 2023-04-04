@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import { useFetch } from './hooks/useFetch';
 
 
 const url = 'http://localhost:8080/users';
 
 function App() {
   const [users, setUsers] = useState([]);
+
+  const { data: items} = useFetch(url);
 
   const[name, setName] = useState("");
   const[email, setEmail] = useState("");
@@ -76,7 +79,7 @@ function App() {
       </div>
       <h1>Lista de Usuários</h1>
       <ul>
-      {users.map((user) => (
+      {items && items.map((user) => (
         <li key={user.id}>
           {user.id} - {user.name} - {user.email} - {user.phone}
         </li>
