@@ -76,7 +76,8 @@ function App() {
             Telefone:
             <input type="number" value={phone} name='phone' onChange={(e)=> setPhone(e.target.value)}/>
           </label>
-          <input type="submit" value="Criar" />
+          {loading && <input type="submit" disable value="Aguarde" />}
+          {!loading && <input type="submit" value="Criar" />}
         </form>
       </div>
       <h1>Lista de Usuários</h1>
