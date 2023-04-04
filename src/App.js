@@ -8,7 +8,7 @@ const url = 'http://localhost:8080/users';
 function App() {
   const [users, setUsers] = useState([]);
 
-  const { data: items, httpConfig, loading} = useFetch(url);
+  const { data: items, httpConfig, loading, error} = useFetch(url);
 
   const[name, setName] = useState("");
   const[email, setEmail] = useState("");
@@ -82,7 +82,8 @@ function App() {
       </div>
       <h1>Lista de Usuários</h1>
       {loading && <p>Carregando dados...</p>}
-      {!loading && <ul>
+      {error && <p>{error}</p>}
+      {!error && <ul>
       {items && items.map((user) => (
         <li key={user.id}>
           {user.id} - {user.name} - {user.email} - {user.phone}
