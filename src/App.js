@@ -80,7 +80,7 @@ function App() {
             Telefone:
             <input type="number" value={phone} name='phone' onChange={(e)=> setPhone(e.target.value)}/>
           </label>
-          {/* {loading && <input type="submit" disable value="Aguarde" />} */}
+          {loading && <input type="submit" value="Aguarde" disabled />}
           {!loading && <input type="submit" value="Criar" />}
         </form>
       </div>
