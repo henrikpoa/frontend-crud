@@ -56,6 +56,10 @@ function App() {
     setPhone('');
   };
 
+  const handleRemove = (id) => {
+    httpConfig(id, 'DELETE');
+  };
+
   return (
     <div className="App">
       <div className='add-user'><h1>Criar Usuários: </h1>
@@ -76,7 +80,7 @@ function App() {
             Telefone:
             <input type="number" value={phone} name='phone' onChange={(e)=> setPhone(e.target.value)}/>
           </label>
-          {loading && <input type="submit" disable value="Aguarde" />}
+          {/* {loading && <input type="submit" disable value="Aguarde" />} */}
           {!loading && <input type="submit" value="Criar" />}
         </form>
       </div>
@@ -87,6 +91,7 @@ function App() {
       {items && items.map((user) => (
         <li key={user.id}>
           {user.id} - {user.name} - {user.email} - {user.phone}
+          <button onClick={()=> handleRemove(user.id)}>Excluir</button>
         </li>
       ))}
       </ul>}
