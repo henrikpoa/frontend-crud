@@ -8,7 +8,7 @@ const url = 'http://localhost:8080/users';
 function App() {
   const [users, setUsers] = useState([]);
 
-  const { data: items} = useFetch(url);
+  const { data: items, httpConfig} = useFetch(url);
 
   const[name, setName] = useState("");
   const[email, setEmail] = useState("");
@@ -36,17 +36,19 @@ function App() {
       name, email, password, phone,
     };
 
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(user),
-    });
+    // const res = await fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(user),
+    // });
 
-    const addedUser = await res.json();
+    // const addedUser = await res.json();
 
-    setUsers((prevUsers) => [...prevUsers, addedUser]);
+    // setUsers((prevUsers) => [...prevUsers, addedUser]);
+
+    httpConfig(user, 'POST');
 
     setName('');
     setEmail('');
